@@ -1,0 +1,3306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+  <title>LIMITLESS NYC | Calisthenics — SoHo, NYC</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Russo+One&family=Exo+2:wght@300;400;500;600;700&family=Share+Tech+Mono&display=swap"
+    rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #03020A;
+      --bg2: #07061A;
+      --bg3: #0B0A24;
+      --panel: rgba(10, 9, 30, .9);
+      --border: rgba(0, 255, 179, .18);
+      --border2: rgba(0, 255, 179, .32);
+      --mint: #00FFB3;
+      --mint2: #00D997;
+      --mint3: #007A56;
+      --pink: #FF2D78;
+      --pink2: #FF5E98;
+      --gold: #F4C400;
+      --gold2: #FFD740;
+      --white: #FFFFFF;
+      --cream: #E8FAF2;
+      --text: #A8D5C6;
+      --muted: #5E8A76;
+      --muted2: #2D4A3A;
+      --fd: 'Russo One', sans-serif;
+      --fb: 'Exo 2', sans-serif;
+      --fm: 'Share Tech Mono', monospace;
+      --gm: 0 0 32px rgba(0, 255, 179, .6), 0 0 80px rgba(0, 255, 179, .25);
+      --gp: 0 0 32px rgba(255, 45, 120, .6), 0 0 80px rgba(255, 45, 120, .25);
+      --gg: 0 0 24px rgba(244, 196, 0, .5);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--cream);
+      font-family: var(--fb);
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    ul {
+      list-style: none;
+    }
+
+    /* CURSOR */
+    #dot {
+      position: fixed;
+      width: 8px;
+      height: 8px;
+      background: var(--mint);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99999;
+      transform: translate(-50%, -50%);
+      box-shadow: var(--gm);
+      transition: width .18s, height .18s, background .18s;
+    }
+
+    #ring {
+      position: fixed;
+      width: 30px;
+      height: 30px;
+      border: 1.5px solid rgba(0, 255, 179, .6);
+      border-radius: 50%;
+      pointer-events: none;
+      z-index: 99998;
+      transform: translate(-50%, -50%);
+      transition: border-color .2s;
+    }
+
+    /* OVERLAYS */
+    .scanlines {
+      position: fixed;
+      inset: 0;
+      z-index: 9998;
+      pointer-events: none;
+      background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, .06) 2px, rgba(0, 0, 0, .06) 4px);
+    }
+
+    .grid-bg {
+      position: fixed;
+      inset: 0;
+      z-index: 9997;
+      pointer-events: none;
+      background-image: linear-gradient(rgba(0, 255, 179, .04) 1px, transparent 1px), linear-gradient(90deg, rgba(0, 255, 179, .04) 1px, transparent 1px);
+      background-size: 64px 64px;
+    }
+
+    /* UTIL */
+    .container {
+      max-width: 1240px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    .section {
+      padding: 120px 0;
+    }
+
+    .tag {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mint);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .tag::before {
+      content: '//';
+      color: var(--muted);
+      margin-right: 2px;
+    }
+
+    .dsp {
+      font-family: var(--fd);
+      font-size: clamp(48px, 7vw, 96px);
+      line-height: .92;
+      text-transform: uppercase;
+      color: var(--white);
+    }
+
+    .dsp-xl {
+      font-family: var(--fd);
+      font-size: clamp(60px, 10vw, 144px);
+      line-height: .87;
+      text-transform: uppercase;
+    }
+
+    .dsp-sm {
+      font-family: var(--fd);
+      font-size: clamp(26px, 3vw, 42px);
+      line-height: .96;
+      text-transform: uppercase;
+    }
+
+    .gm {
+      background: linear-gradient(135deg, var(--mint), #80FFD8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gp {
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gg {
+      background: linear-gradient(135deg, var(--gold), var(--gold2));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .gshift {
+      background: linear-gradient(90deg, var(--mint), var(--pink), var(--gold), var(--mint));
+      background-size: 300% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: gsa 5s linear infinite;
+    }
+
+    @keyframes gsa {
+      0% {
+        background-position: 0%
+      }
+
+      100% {
+        background-position: 300%
+      }
+    }
+
+    /* CLIP UTIL */
+    .cut {
+      clip-path: polygon(0 0, calc(100% - 14px) 0, 100% 14px, 100% 100%, 14px 100%, 0 calc(100% - 14px));
+    }
+
+    .cut-sm {
+      clip-path: polygon(0 0, calc(100% - 8px) 0, 100% 8px, 100% 100%, 8px 100%, 0 calc(100% - 8px));
+    }
+
+    /* BUTTONS */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 34px;
+      font-family: var(--fd);
+      font-size: 13px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+      transition: all .28s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255, 255, 255, .07);
+      transform: translateX(-100%) skewX(-15deg);
+      transition: transform .4s;
+    }
+
+    .btn:hover::after {
+      transform: translateX(200%) skewX(-15deg);
+    }
+
+    .btn-mint {
+      background: var(--mint);
+      color: var(--bg);
+      box-shadow: 0 4px 24px rgba(0, 255, 179, .4);
+      font-weight: 700;
+    }
+
+    .btn-mint:hover {
+      background: var(--mint2);
+      transform: translateY(-2px);
+      box-shadow: var(--gm);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--mint);
+      border: 1px solid rgba(0, 255, 179, .35);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--mint);
+      background: rgba(0, 255, 179, .06);
+      box-shadow: var(--gm);
+    }
+
+    .btn-pink {
+      background: var(--pink);
+      color: var(--white);
+      box-shadow: 0 4px 24px rgba(255, 45, 120, .35);
+    }
+
+    .btn-pink:hover {
+      background: var(--pink2);
+      transform: translateY(-2px);
+      box-shadow: var(--gp);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--mint);
+      padding: 0;
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      border: none;
+      cursor: pointer;
+    }
+
+    .btn-ghost .arr {
+      display: inline-block;
+      transition: transform .2s;
+    }
+
+    .btn-ghost:hover .arr {
+      transform: translateX(7px);
+    }
+
+    /* NAV */
+    .nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      z-index: 1000;
+      padding: 22px 0;
+      transition: all .3s ease;
+    }
+
+    .nav.s {
+      background: rgba(3, 2, 10, .94);
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      border-bottom: 1px solid var(--border);
+      padding: 13px 0;
+    }
+
+    .nav-in {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--fd);
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: var(--white);
+      text-transform: uppercase;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .logo-acc {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .logo-dot {
+      width: 7px;
+      height: 7px;
+      background: var(--mint);
+      border-radius: 50%;
+      box-shadow: var(--gm);
+      animation: pls 2s ease-in-out infinite;
+    }
+
+    @keyframes pls {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1);
+      }
+
+      50% {
+        opacity: .3;
+        transform: scale(.7);
+      }
+    }
+
+    .nl {
+      display: flex;
+      align-items: center;
+      gap: 2px;
+    }
+
+    .nl>li {
+      position: relative;
+    }
+
+    .nl>li>a,
+    .nl>li>button {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      padding: 8px 14px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      transition: color .2s;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .nl>li>a:hover,
+    .nl>li>button:hover {
+      color: var(--mint);
+    }
+
+    .dd {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 0;
+      background: rgba(7, 6, 26, .96);
+      border: 1px solid var(--border);
+      min-width: 200px;
+      padding: 6px;
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(-8px);
+      transition: opacity .2s, transform .2s;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .7), 0 0 30px rgba(0, 255, 179, .05);
+      backdrop-filter: blur(16px);
+    }
+
+    .nl>li:hover .dd {
+      opacity: 1;
+      pointer-events: all;
+      transform: translateY(0);
+    }
+
+    .dd a {
+      display: block;
+      padding: 9px 14px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--cream);
+      transition: color .2s, background .2s;
+    }
+
+    .dd a:hover {
+      color: var(--mint);
+      background: rgba(0, 255, 179, .05);
+    }
+
+    .nav-r {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .ham {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+
+    .ham span {
+      display: block;
+      width: 22px;
+      height: 1.5px;
+      background: var(--mint);
+      transition: all .3s;
+    }
+
+    .mob {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(3, 2, 10, .98);
+      z-index: 999;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      backdrop-filter: blur(24px);
+    }
+
+    .mob.open {
+      display: flex;
+    }
+
+    .mob a {
+      font-family: var(--fd);
+      font-size: 38px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--white);
+      transition: color .2s, text-shadow .2s;
+    }
+
+    .mob a:hover {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .mob-x {
+      position: absolute;
+      top: 22px;
+      right: 28px;
+      background: none;
+      border: none;
+      color: var(--mint);
+      font-size: 28px;
+      cursor: pointer;
+      font-family: var(--fd);
+    }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: 90px;
+    }
+
+    .orb {
+      position: absolute;
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .o1 {
+      width: 900px;
+      height: 900px;
+      top: -350px;
+      right: -250px;
+      background: radial-gradient(circle, rgba(0, 255, 179, .15) 0%, transparent 65%);
+      animation: oa 14s ease-in-out infinite alternate;
+    }
+
+    .o2 {
+      width: 700px;
+      height: 700px;
+      bottom: -200px;
+      left: -150px;
+      background: radial-gradient(circle, rgba(255, 45, 120, .13) 0%, transparent 65%);
+      animation: ob 17s ease-in-out infinite alternate;
+    }
+
+    .o3 {
+      width: 350px;
+      height: 350px;
+      top: 40%;
+      left: 55%;
+      transform: translateX(-50%);
+      background: radial-gradient(circle, rgba(244, 196, 0, .11) 0%, transparent 65%);
+      animation: oc 10s ease-in-out infinite alternate;
+    }
+
+    @keyframes oa {
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(-70px, 90px) scale(1.3);
+      }
+    }
+
+    @keyframes ob {
+      0% {
+        transform: translate(0, 0);
+      }
+
+      100% {
+        transform: translate(90px, -70px) scale(1.2);
+      }
+    }
+
+    @keyframes oc {
+      0% {
+        transform: translateX(-50%) scale(1);
+      }
+
+      100% {
+        transform: translateX(calc(-50% + 50px)) scale(1.4);
+      }
+    }
+
+    .h-photo {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1549476464-37392f717541?w=1800&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: .18;
+      mix-blend-mode: screen;
+    }
+
+    .h-fade {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, var(--bg) 0%, transparent 60%, var(--bg) 100%), linear-gradient(to bottom, var(--bg) 0%, transparent 30%, transparent 65%, var(--bg) 100%);
+    }
+
+    .h-corner {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 360px;
+      height: 360px;
+      pointer-events: none;
+    }
+
+    .h-corner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      border-left: 1px solid rgba(0, 255, 179, .15);
+      border-bottom: 1px solid rgba(0, 255, 179, .15);
+    }
+
+    .h-corner::after {
+      content: '';
+      position: absolute;
+      top: 44px;
+      right: 44px;
+      bottom: 44px;
+      left: 44px;
+      border-left: 1px solid rgba(0, 255, 179, .08);
+      border-bottom: 1px solid rgba(0, 255, 179, .08);
+    }
+
+    .h-vert {
+      position: absolute;
+      right: 64px;
+      bottom: 140px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 4px;
+      color: rgba(0, 255, 179, .4);
+      text-transform: uppercase;
+      writing-mode: vertical-rl;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .h-vert::before {
+      content: '';
+      width: 1px;
+      height: 48px;
+      background: linear-gradient(to bottom, rgba(0, 255, 179, .5), transparent);
+    }
+
+    .hc {
+      position: relative;
+      z-index: 2;
+    }
+
+    .live {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 16px;
+      margin-bottom: 30px;
+      background: rgba(0, 255, 179, .07);
+      border: 1px solid rgba(0, 255, 179, .2);
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mint);
+    }
+
+    .live-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--mint);
+      border-radius: 50%;
+      box-shadow: var(--gm);
+      animation: pls 1.6s infinite;
+    }
+
+    .h-title h1 {
+      font-family: var(--fd);
+      font-size: clamp(68px, 12vw, 156px);
+      line-height: .87;
+      text-transform: uppercase;
+    }
+
+    .h-t1 {
+      color: var(--white);
+    }
+
+    .h-t2 {
+      background: linear-gradient(90deg, var(--mint), #80FFD8, var(--mint));
+      background-size: 200% 100%;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      animation: shimmer 3s linear infinite;
+      filter: drop-shadow(0 0 24px rgba(0, 255, 179, .5));
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: 200%
+      }
+
+      100% {
+        background-position: -200%
+      }
+    }
+
+    .h-stroke {
+      -webkit-text-stroke: 1.5px rgba(255, 255, 255, .12);
+      color: transparent;
+    }
+
+    .h-sub {
+      font-size: 18px;
+      color: var(--text);
+      max-width: 480px;
+      margin-top: 28px;
+      line-height: 1.8;
+    }
+
+    .h-btns {
+      display: flex;
+      gap: 16px;
+      margin-top: 42px;
+      flex-wrap: wrap;
+    }
+
+    .hfloats {
+      position: absolute;
+      right: 6%;
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      z-index: 2;
+    }
+
+    .hfc {
+      background: rgba(7, 6, 26, .85);
+      border: 1px solid var(--border);
+      border-left: 3px solid var(--mint);
+      backdrop-filter: blur(20px);
+      padding: 16px 22px;
+      min-width: 190px;
+      animation: hfb 6s ease-in-out infinite;
+    }
+
+    .hfc:nth-child(2) {
+      animation-delay: 2s;
+      border-left-color: var(--pink);
+    }
+
+    .hfc:nth-child(3) {
+      animation-delay: 4s;
+      border-left-color: var(--gold);
+    }
+
+    @keyframes hfb {
+
+      0%,
+      100% {
+        transform: translateY(0);
+      }
+
+      50% {
+        transform: translateY(-7px);
+      }
+    }
+
+    .hfn {
+      font-family: var(--fd);
+      font-size: 38px;
+      line-height: 1;
+    }
+
+    .hfc:nth-child(1) .hfn {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .hfc:nth-child(2) .hfn {
+      color: var(--pink);
+      text-shadow: var(--gp);
+    }
+
+    .hfc:nth-child(3) .hfn {
+      color: var(--gold);
+      text-shadow: var(--gg);
+    }
+
+    .hfl {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 4px;
+    }
+
+    /* TICKER */
+    .ticker {
+      background: var(--mint);
+      padding: 13px 0;
+      overflow: hidden;
+    }
+
+    .t-track {
+      display: flex;
+      animation: tmv 22s linear infinite;
+      width: max-content;
+    }
+
+    .t-track span {
+      font-family: var(--fd);
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--bg);
+      padding: 0 28px;
+      white-space: nowrap;
+    }
+
+    .t-track .sep {
+      color: rgba(0, 0, 0, .3);
+    }
+
+    @keyframes tmv {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%)
+      }
+    }
+
+    /* STATS */
+    .stats {
+      background: var(--bg2);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .stats-row {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border-left: 1px solid var(--border);
+    }
+
+    .sc {
+      padding: 44px 36px;
+      border-right: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .sc:hover {
+      background: rgba(0, 255, 179, .06);
+    }
+
+    .sc::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .4s;
+    }
+
+    .sc:nth-child(1)::after {
+      background: linear-gradient(90deg, var(--mint), var(--mint2));
+    }
+
+    .sc:nth-child(2)::after {
+      background: linear-gradient(90deg, var(--pink), var(--pink2));
+    }
+
+    .sc:nth-child(3)::after {
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+
+    .sc:nth-child(4)::after {
+      background: linear-gradient(90deg, var(--mint), var(--pink));
+    }
+
+    .sc:hover::after {
+      transform: scaleX(1);
+    }
+
+    .sn {
+      font-family: var(--fd);
+      font-size: 58px;
+      line-height: 1;
+    }
+
+    .sc:nth-child(1) .sn {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .sc:nth-child(2) .sn {
+      color: var(--pink);
+      text-shadow: var(--gp);
+    }
+
+    .sc:nth-child(3) .sn {
+      color: var(--gold);
+      text-shadow: var(--gg);
+    }
+
+    .sc:nth-child(4) .sn {
+      color: var(--white);
+    }
+
+    .sl {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 6px;
+    }
+
+    /* ABOUT */
+    .about-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+    }
+
+    .ab-vis {
+      position: relative;
+    }
+
+    .ab-frame {
+      position: relative;
+    }
+
+    .ab-frame::before {
+      content: '';
+      position: absolute;
+      inset: -3px;
+      background: linear-gradient(135deg, var(--mint), var(--pink), var(--gold), var(--mint));
+      background-size: 300% 300%;
+      animation: gsa 5s linear infinite;
+      z-index: -1;
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .ab-frame:hover::before {
+      opacity: 1;
+    }
+
+    .ab-img {
+      width: 100%;
+      aspect-ratio: 3/4;
+      object-fit: cover;
+    }
+
+    .ab-float {
+      position: absolute;
+      bottom: -36px;
+      right: -36px;
+      width: 52%;
+      aspect-ratio: 1;
+      object-fit: cover;
+      border: 3px solid var(--bg2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, .7);
+    }
+
+    .ab-badge {
+      position: absolute;
+      top: 20px;
+      left: -16px;
+      background: var(--mint);
+      padding: 11px 18px;
+      font-family: var(--fd);
+      font-size: 13px;
+      color: var(--bg);
+      transform: rotate(-2deg);
+      box-shadow: var(--gm);
+    }
+
+    .ab-chip {
+      position: absolute;
+      bottom: 155px;
+      left: -28px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      padding: 15px 20px;
+      min-width: 128px;
+      text-align: center;
+      box-shadow: 0 16px 40px rgba(0, 0, 0, .6);
+    }
+
+    .ab-chip strong {
+      font-family: var(--fd);
+      font-size: 36px;
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .ab-chip span {
+      display: block;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 2px;
+    }
+
+    .divider {
+      width: 60px;
+      height: 2px;
+      background: linear-gradient(90deg, var(--mint), var(--pink));
+      margin: 20px 0;
+      box-shadow: var(--gm);
+    }
+
+    .b-lg {
+      font-size: 18px;
+      line-height: 1.78;
+      color: var(--cream);
+    }
+
+    .b-md {
+      font-size: 16px;
+      line-height: 1.78;
+      color: var(--text);
+    }
+
+    /* PRESS */
+    .press {
+      background: var(--bg3);
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 52px 0;
+    }
+
+    .pr-in {
+      display: flex;
+      align-items: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .pr-seen {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--muted);
+      flex-shrink: 0;
+    }
+
+    .pr-sep {
+      width: 1px;
+      height: 44px;
+      background: var(--border);
+      flex-shrink: 0;
+    }
+
+    .pr-logo {
+      font-family: var(--fd);
+      font-size: 26px;
+      letter-spacing: 2px;
+      color: rgba(255, 255, 255, .4);
+      transition: color .3s, text-shadow .3s;
+      cursor: pointer;
+      flex-shrink: 0;
+    }
+
+    .pr-logo:hover {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .pr-q-block {
+      flex: 1;
+      min-width: 260px;
+      padding-left: 48px;
+      border-left: 1px solid var(--border);
+    }
+
+    .pr-q {
+      font-size: 17px;
+      font-style: italic;
+      color: var(--cream);
+      line-height: 1.7;
+    }
+
+    .pr-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 12px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--mint);
+      transition: gap .2s;
+    }
+
+    .pr-link:hover {
+      gap: 10px;
+    }
+
+    /* SERVICES */
+    .svc-hd {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 56px;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .svc-grid {
+      display: grid;
+      grid-template-columns: 1.55fr 1fr 1fr;
+      gap: 3px;
+      background: var(--border);
+    }
+
+    .scard {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: background .3s;
+    }
+
+    .scard:first-child {
+      grid-row: span 2;
+    }
+
+    .scard:hover {
+      background: var(--bg3);
+    }
+
+    .s-img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 260px;
+      transition: transform .6s, filter .6s;
+      filter: grayscale(25%) brightness(.8);
+    }
+
+    .scard:first-child .s-img {
+      min-height: 100%;
+    }
+
+    .scard:hover .s-img {
+      transform: scale(1.06);
+      filter: grayscale(0) brightness(.95);
+    }
+
+    .s-ov {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(3, 2, 10, .97) 0%, transparent 55%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+    }
+
+    .s-tag {
+      display: inline-block;
+      padding: 3px 12px;
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      width: fit-content;
+    }
+
+    .s-tag.m {
+      background: rgba(0, 255, 179, .15);
+      color: var(--mint);
+      border: 1px solid rgba(0, 255, 179, .3);
+    }
+
+    .s-tag.p {
+      background: rgba(255, 45, 120, .15);
+      color: var(--pink);
+      border: 1px solid rgba(255, 45, 120, .3);
+    }
+
+    .s-tag.g {
+      background: rgba(244, 196, 0, .12);
+      color: var(--gold);
+      border: 1px solid rgba(244, 196, 0, .25);
+    }
+
+    .s-title {
+      font-family: var(--fd);
+      font-size: 34px;
+      color: var(--white);
+      margin-bottom: 8px;
+    }
+
+    .scard:first-child .s-title {
+      font-size: 52px;
+    }
+
+    .s-desc {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.65;
+      margin-bottom: 18px;
+    }
+
+    .s-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      transition: gap .2s;
+    }
+
+    .s-cta:hover {
+      gap: 14px;
+    }
+
+    .scard:nth-child(1) .s-cta {
+      color: var(--mint);
+    }
+
+    .scard:nth-child(2) .s-cta {
+      color: var(--pink);
+    }
+
+    .scard:nth-child(3) .s-cta {
+      color: var(--gold);
+    }
+
+    .scard::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 60%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, .04), transparent);
+      z-index: 2;
+      transition: left .5s ease;
+    }
+
+    .scard:hover::before {
+      left: 150%;
+    }
+
+    /* neon border on hover */
+    .scard::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      transition: box-shadow .4s;
+    }
+
+    .scard:nth-child(1):hover::after {
+      box-shadow: inset 0 0 0 1px rgba(0, 255, 179, .3);
+    }
+
+    .scard:nth-child(2):hover::after {
+      box-shadow: inset 0 0 0 1px rgba(255, 45, 120, .3);
+    }
+
+    .scard:nth-child(3):hover::after {
+      box-shadow: inset 0 0 0 1px rgba(244, 196, 0, .25);
+    }
+
+    /* WORKSHOPS */
+    .ws-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      border: 1px solid var(--border);
+    }
+
+    .ws-con {
+      padding: 80px 64px;
+      border-right: 1px solid var(--border);
+    }
+
+    .ws-vis {
+      position: relative;
+      overflow: hidden;
+      min-height: 600px;
+      background: url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=900&q=80&auto=format&fit=crop') center/cover;
+    }
+
+    .ws-vis::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(270deg, transparent 35%, var(--bg2) 100%);
+    }
+
+    .ws-steps {
+      margin-top: 44px;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+    }
+
+    .ws-steps::before {
+      content: '';
+      position: absolute;
+      left: 20px;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      background: linear-gradient(to bottom, var(--mint), transparent);
+    }
+
+    .wstep {
+      display: flex;
+      gap: 22px;
+      padding-left: 8px;
+      margin-bottom: 26px;
+      align-items: flex-start;
+    }
+
+    .wdot {
+      width: 24px;
+      height: 24px;
+      border: 1px solid rgba(0, 255, 179, .4);
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg2);
+      position: relative;
+      z-index: 1;
+      transition: background .3s, box-shadow .3s;
+    }
+
+    .wstep:hover .wdot {
+      background: var(--mint);
+      box-shadow: var(--gm);
+    }
+
+    .wdot::after {
+      content: '';
+      width: 7px;
+      height: 7px;
+      background: var(--mint);
+      transition: background .3s;
+    }
+
+    .wstep:hover .wdot::after {
+      background: var(--bg);
+    }
+
+    .wi h4 {
+      font-family: var(--fm);
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .wi p {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .wt {
+      font-family: var(--fm);
+      font-size: 10px;
+      color: var(--mint);
+      letter-spacing: 1px;
+      margin-bottom: 2px;
+    }
+
+    /* VALUES */
+    .values {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .values::before {
+      content: 'LIMITLESS';
+      position: absolute;
+      font-family: var(--fd);
+      font-size: clamp(100px, 16vw, 220px);
+      color: rgba(0, 255, 179, .04);
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      white-space: nowrap;
+      letter-spacing: 10px;
+      pointer-events: none;
+    }
+
+    .val-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      border: 1px solid var(--border);
+    }
+
+    .vc {
+      background: var(--bg);
+      padding: 54px 40px;
+      position: relative;
+      overflow: hidden;
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .vc:hover {
+      background: var(--bg2);
+    }
+
+    .vc::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform .5s ease;
+    }
+
+    .vc:nth-child(1)::before {
+      background: linear-gradient(90deg, var(--mint), var(--mint2));
+    }
+
+    .vc:nth-child(2)::before {
+      background: linear-gradient(90deg, var(--pink), var(--pink2));
+    }
+
+    .vc:nth-child(3)::before {
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+
+    .vc:hover::before {
+      transform: scaleX(1);
+    }
+
+    .vnm {
+      font-family: var(--fd);
+      font-size: 88px;
+      line-height: 1;
+      color: rgba(255, 255, 255, .03);
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+
+    .viw {
+      width: 52px;
+      height: 52px;
+      border: 1px solid var(--border2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+
+    .vc:nth-child(1):hover .viw {
+      border-color: var(--mint);
+      box-shadow: 0 0 20px rgba(0, 255, 179, .2);
+    }
+
+    .vc:nth-child(2):hover .viw {
+      border-color: var(--pink);
+      box-shadow: 0 0 20px rgba(255, 45, 120, .2);
+    }
+
+    .vc:nth-child(3):hover .viw {
+      border-color: var(--gold);
+      box-shadow: 0 0 20px rgba(244, 196, 0, .2);
+    }
+
+    .vn {
+      font-family: var(--fd);
+      font-size: 42px;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+
+    .vq {
+      font-size: 15px;
+      font-style: italic;
+      color: var(--text);
+      line-height: 1.7;
+      border-left: 2px solid var(--muted);
+      padding-left: 16px;
+      margin-bottom: 14px;
+      transition: border-color .3s;
+    }
+
+    .vc:nth-child(1):hover .vq {
+      border-color: var(--mint);
+    }
+
+    .vc:nth-child(2):hover .vq {
+      border-color: var(--pink);
+    }
+
+    .vc:nth-child(3):hover .vq {
+      border-color: var(--gold);
+    }
+
+    .va {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    /* PROGRAMS */
+    .programs {
+      border-top: 1px solid var(--border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .programs::after {
+      content: '';
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 45, 120, .07) 0%, transparent 70%);
+      top: -200px;
+      right: -200px;
+      pointer-events: none;
+    }
+
+    .pg-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .pg-vis {
+      position: relative;
+    }
+
+    .pg-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border: 1px solid var(--border);
+    }
+
+    .pg-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at bottom left, rgba(255, 45, 120, .12) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .pg-chip {
+      position: absolute;
+      top: 28px;
+      right: -20px;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      color: var(--white);
+      padding: 18px;
+      text-align: center;
+      box-shadow: var(--gp);
+    }
+
+    .pg-chip strong {
+      display: block;
+      font-family: var(--fd);
+      font-size: 34px;
+      line-height: 1;
+    }
+
+    .pg-chip span {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+    }
+
+    .feat-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 30px;
+    }
+
+    .feat {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+      padding: 13px;
+      border: 1px solid var(--border);
+      transition: border-color .3s, background .3s;
+    }
+
+    .feat:hover {
+      border-color: rgba(255, 45, 120, .3);
+      background: rgba(255, 45, 120, .04);
+    }
+
+    .fdot {
+      width: 20px;
+      height: 20px;
+      background: linear-gradient(135deg, var(--pink), var(--pink2));
+      flex-shrink: 0;
+      margin-top: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .fdot::after {
+      content: '✓';
+      font-size: 10px;
+      color: var(--white);
+      font-weight: 700;
+    }
+
+    .ft {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.5;
+    }
+
+    /* TEAM */
+    .team {
+      border-top: 1px solid var(--border);
+    }
+
+    .t-hd {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    .t-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+    }
+
+    .tc {
+      background: var(--bg2);
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    .t-iw {
+      width: 100%;
+      aspect-ratio: 3/4;
+      overflow: hidden;
+    }
+
+    .t-iw img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(35%) contrast(1.1);
+      transition: transform .5s, filter .5s;
+    }
+
+    .tc:hover .t-iw img {
+      transform: scale(1.06);
+      filter: grayscale(0) contrast(1);
+    }
+
+    .t-info {
+      padding: 22px 26px;
+      border-top: 1px solid var(--border);
+    }
+
+    .t-name {
+      font-family: var(--fd);
+      font-size: 28px;
+      color: var(--white);
+    }
+
+    .t-role {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-top: 4px;
+    }
+
+    .tc:nth-child(1) .t-role {
+      color: var(--mint);
+    }
+
+    .tc:nth-child(2) .t-role {
+      color: var(--pink);
+    }
+
+    .tc:nth-child(3) .t-role {
+      color: var(--gold);
+    }
+
+    .t-bar {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      transform: scaleX(0);
+      transition: transform .3s;
+      transform-origin: left;
+    }
+
+    .tc:nth-child(1) .t-bar {
+      background: linear-gradient(90deg, var(--mint), var(--mint2));
+    }
+
+    .tc:nth-child(2) .t-bar {
+      background: linear-gradient(90deg, var(--pink), var(--pink2));
+    }
+
+    .tc:nth-child(3) .t-bar {
+      background: linear-gradient(90deg, var(--gold), var(--gold2));
+    }
+
+    .tc:hover .t-bar {
+      transform: scaleX(1);
+    }
+
+    /* NONPROFIT */
+    .nonprofit {
+      position: relative;
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+    }
+
+    .np-bg {
+      position: absolute;
+      inset: 0;
+      background: url('https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=1600&q=80&auto=format&fit=crop') center/cover no-repeat;
+      opacity: .1;
+    }
+
+    .np-glow {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at left center, rgba(0, 255, 179, .06) 0%, transparent 60%);
+    }
+
+    .np-in {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .np-logo {
+      font-family: var(--fd);
+      font-size: clamp(44px, 5vw, 70px);
+      line-height: .95;
+      margin-bottom: 28px;
+      color: var(--white);
+    }
+
+    .np-logo span {
+      color: var(--mint);
+      text-shadow: var(--gm);
+    }
+
+    .np-pillars {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .np-p {
+      display: flex;
+      gap: 18px;
+      padding: 20px 22px;
+      border-bottom: 1px solid var(--border);
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .np-p:first-child {
+      border-top: 1px solid var(--border);
+    }
+
+    .np-p:hover {
+      background: rgba(0, 255, 179, .03);
+    }
+
+    .np-line {
+      width: 2px;
+      background: var(--mint);
+      flex-shrink: 0;
+      border-radius: 2px;
+      opacity: .35;
+      transition: opacity .3s;
+    }
+
+    .np-p:hover .np-line {
+      opacity: 1;
+      box-shadow: var(--gm);
+    }
+
+    .np-t {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--white);
+      margin-bottom: 4px;
+    }
+
+    .np-d {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    /* INSTAGRAM */
+    .instagram {
+      border-top: 1px solid var(--border);
+      padding: 80px 0;
+    }
+
+    .ig-hd {
+      text-align: center;
+      margin-bottom: 44px;
+    }
+
+    .ig-handle {
+      font-family: var(--fd);
+      font-size: clamp(34px, 5vw, 62px);
+    }
+
+    .ig-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 3px;
+    }
+
+    .ig-item {
+      aspect-ratio: 1;
+      overflow: hidden;
+      position: relative;
+      cursor: pointer;
+    }
+
+    .ig-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: grayscale(15%);
+      transition: transform .5s, filter .5s;
+    }
+
+    .ig-item:hover img {
+      transform: scale(1.08);
+      filter: grayscale(0);
+    }
+
+    .ig-mask {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(0, 255, 179, .45), rgba(255, 45, 120, .45));
+      opacity: 0;
+      transition: opacity .3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .ig-item:hover .ig-mask {
+      opacity: 1;
+    }
+
+    .ig-icon {
+      width: 30px;
+      height: 30px;
+      fill: var(--white);
+    }
+
+    /* CTA */
+    .cta-sec {
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      padding: 120px 0;
+      border-top: 1px solid var(--border);
+    }
+
+    .cta-bg {
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at center, rgba(0, 255, 179, .06) 0%, transparent 65%);
+    }
+
+    .cta-box {
+      position: relative;
+      z-index: 1;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 40px;
+      align-items: center;
+      border: 1px solid var(--border2);
+      padding: 64px;
+      background: var(--bg2);
+    }
+
+    .cta-box::before {
+      content: '';
+      position: absolute;
+      inset: -1px;
+      background: linear-gradient(135deg, rgba(0, 255, 179, .4), transparent 50%, rgba(255, 45, 120, .3));
+      z-index: -1;
+    }
+
+    .cta-title {
+      font-family: var(--fd);
+      font-size: clamp(38px, 5.5vw, 78px);
+      line-height: .95;
+      color: var(--white);
+    }
+
+    .cta-sub {
+      font-size: 16px;
+      color: var(--text);
+      margin-top: 14px;
+    }
+
+    .cta-btns {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+
+    .con-cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2px;
+      background: var(--border);
+      margin-top: 56px;
+    }
+
+    .cc {
+      background: var(--bg2);
+      padding: 30px;
+      transition: background .3s;
+      cursor: pointer;
+    }
+
+    .cc:hover {
+      background: var(--bg3);
+    }
+
+    .cc-lbl {
+      font-family: var(--fm);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .cc-lbl::before {
+      content: '';
+      width: 16px;
+      height: 1px;
+      background: var(--mint);
+    }
+
+    .cc-val {
+      font-size: 16px;
+      color: var(--white);
+      line-height: 1.5;
+    }
+
+    .cc-val a {
+      color: var(--white);
+      transition: color .2s;
+    }
+
+    .cc-val a:hover {
+      color: var(--mint);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: #010009;
+      border-top: 1px solid var(--border);
+      padding: 70px 0 32px;
+    }
+
+    .ft-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 52px;
+    }
+
+    .ft-brand {
+      font-family: var(--fd);
+      font-size: 38px;
+      letter-spacing: 2px;
+      margin-bottom: 14px;
+      color: var(--white);
+    }
+
+    .ft-brand em {
+      color: var(--mint);
+      font-style: normal;
+      text-shadow: var(--gm);
+    }
+
+    .ft-tag {
+      font-size: 14px;
+      color: var(--text);
+      line-height: 1.7;
+      margin-bottom: 26px;
+    }
+
+    .soc-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .soc {
+      width: 40px;
+      height: 40px;
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--muted);
+      transition: all .25s;
+      cursor: pointer;
+    }
+
+    .soc:hover {
+      border-color: var(--mint);
+      color: var(--mint);
+      box-shadow: var(--gm);
+    }
+
+    .ft-col h5 {
+      font-family: var(--fm);
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: var(--mint);
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .ft-col h5::before {
+      content: '';
+      width: 14px;
+      height: 1px;
+      background: var(--mint);
+    }
+
+    .ft-links {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .ft-links a {
+      font-size: 14px;
+      color: var(--text);
+      transition: color .2s, padding-left .2s;
+    }
+
+    .ft-links a:hover {
+      color: var(--mint);
+      padding-left: 6px;
+    }
+
+    .ft-btm {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 26px;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .ft-btm p {
+      font-family: var(--fm);
+      font-size: 11px;
+      letter-spacing: 1px;
+      color: var(--muted);
+    }
+
+    /* CHATBOT */
+    .cfab {
+      position: fixed;
+      bottom: 28px;
+      right: 28px;
+      width: 60px;
+      height: 60px;
+      background: linear-gradient(135deg, var(--mint), var(--mint2));
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 998;
+      box-shadow: var(--gm);
+      transition: transform .25s;
+      clip-path: polygon(0 0, calc(100% - 10px) 0, 100% 10px, 100% 100%, 10px 100%, 0 calc(100% - 10px));
+    }
+
+    .cfab:hover {
+      transform: scale(1.07);
+    }
+
+    .cfab svg {
+      width: 24px;
+      height: 24px;
+    }
+
+    .ci-o {
+      display: block;
+    }
+
+    .ci-c {
+      display: none;
+    }
+
+    .cfab.act .ci-o {
+      display: none;
+    }
+
+    .cfab.act .ci-c {
+      display: block;
+    }
+
+    .cwin {
+      position: fixed;
+      bottom: 104px;
+      right: 28px;
+      width: 370px;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      display: flex;
+      flex-direction: column;
+      z-index: 997;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, .8), 0 0 60px rgba(0, 255, 179, .08);
+      transform-origin: bottom right;
+      transform: scale(.93) translateY(14px);
+      opacity: 0;
+      pointer-events: none;
+      transition: all .3s cubic-bezier(.34, 1.56, .64, 1);
+    }
+
+    .cwin.open {
+      transform: scale(1) translateY(0);
+      opacity: 1;
+      pointer-events: all;
+    }
+
+    .chdr {
+      background: linear-gradient(135deg, var(--mint3), var(--mint2));
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .cav {
+      width: 36px;
+      height: 36px;
+      background: rgba(3, 2, 10, .4);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, .2);
+      flex-shrink: 0;
+    }
+
+    .cav span {
+      font-family: var(--fd);
+      font-size: 13px;
+      color: var(--white);
+    }
+
+    .chi h4 {
+      font-family: var(--fm);
+      font-size: 13px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--bg);
+      font-weight: 700;
+    }
+
+    .chi p {
+      font-size: 11px;
+      color: rgba(3, 2, 10, .6);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 2px;
+    }
+
+    .odot {
+      width: 6px;
+      height: 6px;
+      background: #00C853;
+      border-radius: 50%;
+      animation: pls 1.8s infinite;
+    }
+
+    .cmsgs {
+      flex: 1;
+      overflow-y: auto;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      max-height: 360px;
+      scrollbar-width: thin;
+      scrollbar-color: var(--border) transparent;
+    }
+
+    .cmsgs::-webkit-scrollbar {
+      width: 3px;
+    }
+
+    .cmsgs::-webkit-scrollbar-thumb {
+      background: var(--border);
+    }
+
+    .cm {
+      max-width: 88%;
+      animation: cpa .22s ease;
+    }
+
+    @keyframes cpa {
+      from {
+        opacity: 0;
+        transform: translateY(6px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .cm-b {
+      align-self: flex-start;
+    }
+
+    .cm-u {
+      align-self: flex-end;
+    }
+
+    .cbb {
+      padding: 10px 14px;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+
+    .cm-b .cbb {
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--cream);
+      border-radius: 0 8px 8px 8px;
+    }
+
+    .cm-u .cbb {
+      background: linear-gradient(135deg, var(--mint3), var(--mint2));
+      color: var(--bg);
+      font-weight: 600;
+      border-radius: 8px 8px 0 8px;
+    }
+
+    .ctm {
+      font-size: 10px;
+      color: var(--muted);
+      margin-top: 3px;
+      padding: 0 4px;
+      font-family: var(--fm);
+    }
+
+    .cm-u .ctm {
+      text-align: right;
+    }
+
+    .csugg {
+      padding: 8px 14px 2px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .sb {
+      padding: 5px 11px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--fb);
+      font-size: 12px;
+      cursor: pointer;
+      transition: all .2s;
+      border-radius: 100px;
+      white-space: nowrap;
+    }
+
+    .sb:hover {
+      border-color: var(--mint);
+      color: var(--mint);
+      background: rgba(0, 255, 179, .05);
+    }
+
+    .cinp-row {
+      display: flex;
+      gap: 8px;
+      padding: 12px 14px 14px;
+      border-top: 1px solid var(--border);
+    }
+
+    .cinp {
+      flex: 1;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      color: var(--white);
+      font-family: var(--fb);
+      font-size: 13px;
+      padding: 9px 13px;
+      outline: none;
+      transition: border-color .2s;
+    }
+
+    .cinp:focus {
+      border-color: rgba(0, 255, 179, .4);
+    }
+
+    .cinp::placeholder {
+      color: var(--muted);
+    }
+
+    .csnd {
+      width: 40px;
+      height: 40px;
+      background: var(--mint);
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      transition: opacity .2s;
+    }
+
+    .csnd:hover {
+      opacity: .8;
+    }
+
+    .csnd svg {
+      width: 16px;
+      height: 16px;
+      fill: var(--bg);
+    }
+
+    .trow {
+      display: flex;
+      gap: 4px;
+      align-items: center;
+      padding: 10px 14px;
+    }
+
+    .td {
+      width: 6px;
+      height: 6px;
+      background: var(--muted);
+      border-radius: 50%;
+      animation: td 1.2s infinite;
+    }
+
+    .td:nth-child(2) {
+      animation-delay: .2s;
+    }
+
+    .td:nth-child(3) {
+      animation-delay: .4s;
+    }
+
+    @keyframes td {
+
+      0%,
+      100% {
+        transform: translateY(0);
+        opacity: .4;
+      }
+
+      50% {
+        transform: translateY(-4px);
+        opacity: 1;
+      }
+    }
+
+    /* REVEAL */
+    .rv {
+      opacity: 0;
+      transform: translateY(32px);
+      transition: opacity .6s ease, transform .6s ease;
+    }
+
+    .rv.in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .rv.d1 {
+      transition-delay: .1s;
+    }
+
+    .rv.d2 {
+      transition-delay: .2s;
+    }
+
+    .rv.d3 {
+      transition-delay: .3s;
+    }
+
+    .rv.d4 {
+      transition-delay: .4s;
+    }
+
+    /* FOCUS STYLES FOR ACCESSIBILITY */
+    a:focus-visible,
+    button:focus-visible,
+    input:focus-visible {
+      outline: 2px solid var(--mint);
+      outline-offset: 2px;
+    }
+
+    /* RESPONSIVE */
+    @media(max-width:1024px) {
+      .ft-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .svc-grid {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
+      }
+
+      .scard:first-child {
+        grid-row: auto;
+      }
+
+      .hfloats {
+        display: none;
+      }
+
+      .ws-con {
+        padding: 60px 40px;
+      }
+    }
+
+    @media(max-width:768px) {
+
+      .nl,
+      .nav-r>.btn-outline {
+        display: none;
+      }
+
+      .ham {
+        display: flex;
+      }
+
+      .section {
+        padding: 70px 0;
+      }
+
+      .about-grid,
+      .ws-wrap,
+      .pg-layout,
+      .np-in,
+      .cta-box,
+      .t-grid,
+      .val-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .ws-wrap {
+        border: none;
+      }
+
+      .ws-vis {
+        min-height: 280px;
+      }
+
+      .ws-con {
+        padding: 40px 24px;
+        border-right: none;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .svc-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cta-box {
+        padding: 40px 24px;
+        grid-template-columns: 1fr;
+      }
+
+      .cta-btns {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
+
+      .stats-row {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .ig-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .con-cards {
+        grid-template-columns: 1fr;
+      }
+
+      .ft-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cwin {
+        width: calc(100vw - 36px);
+        right: 18px;
+        bottom: 96px;
+      }
+
+      .pg-chip,
+      .ab-float,
+      .ab-chip {
+        display: none;
+      }
+
+      .h-btns {
+        flex-direction: column;
+      }
+
+      .pr-q-block {
+        padding-left: 0;
+        border-left: none;
+        border-top: 1px solid var(--border);
+        padding-top: 20px;
+      }
+
+      .cta-box::before {
+        display: none;
+      }
+
+      .h-corner,
+      .h-vert {
+        display: none;
+      }
+    }
+
+    @media(max-width:480px) {
+      .stats-row {
+        grid-template-columns: 1fr;
+      }
+
+      .ig-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="scanlines"></div>
+  <div class="grid-bg"></div>
+  <div id="dot"></div>
+  <div id="ring"></div>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="container">
+      <div class="nav-in">
+        <a href="#home" class="logo">LIMITLESS<span class="logo-acc"> NYC</span><span class="logo-dot"></span></a>
+        <ul class="nl">
+          <li><a href="#home">Home</a></li>
+          <li><button>About ▾</button>
+            <div class="dd"><a href="#about">Who We Are</a><a href="#team">Meet The Team</a><a href="#contact">Contact
+                Us</a></div>
+          </li>
+          <li><button>Booking ▾</button>
+            <div class="dd"><a href="#services">1 on 1 Training</a><a href="#workshops">Workshops</a></div>
+          </li>
+          <li><a href="#programs">At Home Programs</a></li>
+          <li><a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together</a></li>
+        </ul>
+        <div class="nav-r">
+          <a href="#services" class="btn btn-mint cut-sm" style="padding:10px 22px;display:none;" id="nCta">Book Now</a>
+          <button class="ham" id="hamBtn"><span></span><span></span><span></span></button>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="mob" id="mobMenu">
+    <button class="mob-x" id="mobX">✕</button>
+    <a href="#home" onclick="cm()">Home</a>
+    <a href="#about" onclick="cm()">Who We Are</a>
+    <a href="#team" onclick="cm()">Meet The Team</a>
+    <a href="#services" onclick="cm()">Booking</a>
+    <a href="#workshops" onclick="cm()">Workshops</a>
+    <a href="#programs" onclick="cm()">At Home Programs</a>
+    <a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together</a>
+    <a href="#contact" onclick="cm()">Contact Us</a>
+  </div>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="orb o1"></div>
+    <div class="orb o2"></div>
+    <div class="orb o3"></div>
+    <div class="h-photo"></div>
+    <div class="h-fade"></div>
+    <div class="h-corner"></div>
+    <div class="h-vert">SoHo · 371 Canal St · New York City</div>
+    <div class="container hc">
+      <div class="live rv">
+        <span class="live-dot"></span>
+        <span>Calisthenics Gym · SoHo, New York City</span>
+      </div>
+      <div class="h-title rv d1">
+        <h1><span class="h-t1">STRONGER</span><br><span class="h-t2">TOGETHER</span></h1>
+      </div>
+      <p class="h-sub rv d2">We use the body as an instrument to build resilience of mind and spirit. Physical strength
+        is merely a byproduct of the effort.</p>
+      <div class="h-btns rv d3">
+        <a href="#services" class="btn btn-mint cut">Book A Session</a>
+        <a href="#workshops" class="btn btn-outline cut">Explore Workshops</a>
+      </div>
+    </div>
+    <div class="hfloats">
+      <div class="hfc rv d2">
+        <div class="hfn"><span class="counter" data-t="500">0</span>+</div>
+        <div class="hfl">Members Trained</div>
+      </div>
+      <div class="hfc rv d3">
+        <div class="hfn">#1</div>
+        <div class="hfl">BarMania USA</div>
+      </div>
+      <div class="hfc rv d4">
+        <div class="hfn">NYC</div>
+        <div class="hfl">Canal St · SoHo</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker" aria-hidden="true">
+    <div class="t-track">
+      <span>Stronger Together</span><span class="sep"> ✦ </span><span>Build Resilience</span><span class="sep"> ✦
+      </span><span>Mental Fortitude</span><span class="sep"> ✦ </span><span>NYC Calisthenics</span><span class="sep"> ✦
+      </span><span>No Limits</span><span class="sep"> ✦ </span><span>Mind &amp; Body</span><span class="sep"> ✦
+      </span><span>Consistency Is King</span><span class="sep"> ✦ </span><span>Train Limitless</span><span class="sep">
+        ✦ </span>
+      <span>Stronger Together</span><span class="sep"> ✦ </span><span>Build Resilience</span><span class="sep"> ✦
+      </span><span>Mental Fortitude</span><span class="sep"> ✦ </span><span>NYC Calisthenics</span><span class="sep"> ✦
+      </span><span>No Limits</span><span class="sep"> ✦ </span><span>Mind &amp; Body</span><span class="sep"> ✦
+      </span><span>Consistency Is King</span><span class="sep"> ✦ </span><span>Train Limitless</span><span class="sep">
+        ✦ </span>
+    </div>
+  </div>
+
+  <!-- STATS -->
+  <section class="stats" id="stats">
+    <div class="container" style="padding:0 32px;">
+      <div class="stats-row">
+        <div class="sc rv">
+          <div class="sn"><span class="counter" data-t="500">0</span>+</div>
+          <div class="sl">Members Trained</div>
+        </div>
+        <div class="sc rv d1">
+          <div class="sn"><span class="counter" data-t="3">0</span>+</div>
+          <div class="sl">Years of Impact</div>
+        </div>
+        <div class="sc rv d2">
+          <div class="sn"><span class="counter" data-t="100">0</span>%</div>
+          <div class="sl">Bodyweight Based</div>
+        </div>
+        <div class="sc rv d3">
+          <div class="sn">NYC</div>
+          <div class="sl">SoHo · Canal Street</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="section" id="about" style="background:var(--bg);">
+    <div class="container">
+      <div class="about-grid">
+        <div class="ab-vis rv">
+          <div class="ab-frame">
+            <img src="https://images.unsplash.com/photo-1594737625785-a6cbdabd333c?w=800&q=80&auto=format&fit=crop"
+              alt="Training" class="ab-img" />
+          </div>
+          <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80&auto=format&fit=crop"
+            alt="Community" class="ab-float" />
+          <div class="ab-badge">Est. NYC</div>
+          <div class="ab-chip"><strong class="counter" data-t="371">0</strong><span>Canal St</span></div>
+        </div>
+        <div class="rv d1">
+          <span class="tag">Who We Are</span>
+          <h2 class="dsp">Create<br>Your Own<br><span class="gm">Reality</span></h2>
+          <div class="divider"></div>
+          <p class="b-lg" style="margin-bottom:20px;">At LIMITLESS NYC, we empower people. No matter who you are or
+            where you come from, adversity is going to find its way into your life.</p>
+          <p class="b-md" style="margin-bottom:20px;">We believe resilience is a skill and we are here to build stress
+            tolerance. We use the body as a tool to build discipline and enhance mental fortitude.</p>
+          <p class="b-md">We must challenge ourselves to find the peace within.</p>
+          <div style="margin-top:40px;display:flex;gap:16px;flex-wrap:wrap;">
+            <a href="#services" class="btn btn-mint cut">Start Training</a>
+            <a href="#team" class="btn-ghost btn">Meet The Team <span class="arr">→</span></a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRESS -->
+  <div class="press">
+    <div class="container">
+      <div class="pr-in">
+        <span class="pr-seen">As Seen On</span>
+        <div class="pr-sep"></div>
+        <span class="pr-logo">PIX11 NEWS</span>
+        <div class="pr-sep"></div>
+        <div class="pr-q-block">
+          <p class="pr-q">"Get Stronger, Live Better — PIX11 News spotlights LIMITLESS NYC for its unique approach to
+            calisthenics and community fitness in New York City."</p>
+          <a href="https://pix11.com/pix11-partner-sponsored/sponsored-content-get-stronger-live-better-with-limitless-nyc/"
+            target="_blank" class="pr-link">View Full Article →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section class="section" id="services" style="background:var(--bg2);">
+    <div class="container">
+      <div class="svc-hd rv">
+        <div>
+          <span class="tag">Booking</span>
+          <h2 class="dsp">Train With<br>Purpose</h2>
+        </div>
+        <p class="b-md" style="max-width:340px;">Every session is engineered to challenge your limits and forge mental
+          toughness alongside physical strength.</p>
+      </div>
+      <div class="svc-grid rv d1">
+        <div class="scard">
+          <img src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?w=800&q=80&auto=format&fit=crop"
+            alt="1 on 1 Training" class="s-img" style="min-height:100%;" />
+          <div class="s-ov">
+            <div class="s-tag m">Personal</div>
+            <div class="s-title">1 on 1<br>Training</div>
+            <div class="s-desc">Dedicated coaching tailored to your goals, level, and schedule. Maximum focus, maximum
+              results.</div>
+            <a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank" class="s-cta">Inquire Now →</a>
+          </div>
+        </div>
+        <div class="scard">
+          <img src="https://images.unsplash.com/photo-1574680096145-d05b474e2155?w=700&q=80&auto=format&fit=crop"
+            alt="Workshops" class="s-img" />
+          <div class="s-ov">
+            <div class="s-tag p">Community</div>
+            <div class="s-title">Workshops</div>
+            <div class="s-desc">Full-body, full-mind group sessions for schools, orgs, and communities.</div>
+            <a href="#workshops" class="s-cta">Learn More →</a>
+          </div>
+        </div>
+        <div class="scard">
+          <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=700&q=80&auto=format&fit=crop"
+            alt="At Home" class="s-img" />
+          <div class="s-ov">
+            <div class="s-tag g">Digital</div>
+            <div class="s-title">At Home<br>Programs</div>
+            <div class="s-desc">100% bodyweight. Zero equipment. Train anywhere, anytime.</div>
+            <a href="#programs" class="s-cta">View Programs →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WORKSHOPS -->
+  <section class="section workshops" id="workshops" style="background:var(--bg);">
+    <div class="container" style="padding:0 32px;">
+      <div class="ws-wrap rv">
+        <div class="ws-con">
+          <span class="tag">Workshops</span>
+          <h2 class="dsp">Resilience.<br>Strength.<br><span class="gp">Confidence.</span></h2>
+          <p class="b-md" style="margin-top:20px;">Two-hour immersive experiences combining expert-led training with
+            real-world mindset coaching. Built for schools, nonprofits, agencies, and private orgs.</p>
+          <div class="ws-steps">
+            <div class="wstep">
+              <div class="wdot"></div>
+              <div class="wi">
+                <div class="wt">15 min</div>
+                <h4>Introductions &amp; Welcome</h4>
+                <p>Set the tone, build the group, prepare the mindset.</p>
+              </div>
+            </div>
+            <div class="wstep">
+              <div class="wdot"></div>
+              <div class="wi">
+                <div class="wt">30 min</div>
+                <h4>Foundations</h4>
+                <p>Expert-led movement instruction with modifications for all levels.</p>
+              </div>
+            </div>
+            <div class="wstep">
+              <div class="wdot"></div>
+              <div class="wi">
+                <div class="wt">30 min</div>
+                <h4>Pushing Limits</h4>
+                <p>Set-based training to challenge every participant at their own pace.</p>
+              </div>
+            </div>
+            <div class="wstep">
+              <div class="wdot"></div>
+              <div class="wi">
+                <div class="wt">30 min</div>
+                <h4>Internal Strength</h4>
+                <p>Mind-body connection, resilience, and the power of consistent effort.</p>
+              </div>
+            </div>
+            <div class="wstep">
+              <div class="wdot"></div>
+              <div class="wi">
+                <div class="wt">15 min</div>
+                <h4>Wrap Up &amp; 1-on-1 Demos</h4>
+                <p>Technique refinement and personalized next steps for each participant.</p>
+              </div>
+            </div>
+          </div>
+          <div style="margin-top:40px;"><a href="https://www.limitlessnyc.com/book-a-workshop" target="_blank"
+              class="btn btn-mint cut">Book A Workshop</a></div>
+        </div>
+        <div class="ws-vis"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VALUES -->
+  <section class="section values" id="values" style="background:var(--bg2);">
+    <div class="container" style="margin-bottom:56px;text-align:center;">
+      <span class="tag">Our Philosophy</span>
+      <h2 class="dsp rv">What Drives Us</h2>
+    </div>
+    <div class="container" style="padding:0 32px;">
+      <div class="val-grid">
+        <div class="vc rv">
+          <div class="vnm">01</div>
+          <div class="viw"><span style="font-size:20px;">🔥</span></div>
+          <div class="vn">Consistency</div>
+          <p class="vq">"Every day is a new opportunity to be better than yesterday."</p>
+          <p class="va">— O Brolick</p>
+        </div>
+        <div class="vc rv d1">
+          <div class="vnm">02</div>
+          <div class="viw"><span style="font-size:20px;">❤️</span></div>
+          <div class="vn">Family</div>
+          <p class="vq">"Becoming the healthiest version of yourself is one of the most selfless things you can do."</p>
+          <p class="va">— Jordan</p>
+        </div>
+        <div class="vc rv d2">
+          <div class="vnm">03</div>
+          <div class="viw"><span style="font-size:20px;">⚡</span></div>
+          <div class="vn">Fortitude</div>
+          <p class="vq">"Strength is never a weakness."</p>
+          <p class="va">— Joe The Dog</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section class="section programs" id="programs" style="background:var(--bg);">
+    <div class="container">
+      <div class="pg-layout">
+        <div class="rv">
+          <span class="tag">At Home Programs</span>
+          <h2 class="dsp">Train<br>Anywhere.<br><span class="gp">No Excuses.</span></h2>
+          <div class="divider"></div>
+          <p class="b-md">Our digital programs bring the LIMITLESS method to you — 100% bodyweight, zero equipment, all
+            levels. Train on your schedule.</p>
+          <div class="feat-grid">
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">Zero equipment</span>
+            </div>
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">All fitness levels</span>
+            </div>
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">Progressive structure</span>
+            </div>
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">Mind &amp; body approach</span>
+            </div>
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">100% calisthenics</span>
+            </div>
+            <div class="feat">
+              <div class="fdot"></div><span class="ft">Your schedule</span>
+            </div>
+          </div>
+          <div style="margin-top:36px;"><a href="https://www.limitlessnyc.com/programs" target="_blank"
+              class="btn btn-pink cut">Browse Programs</a></div>
+        </div>
+        <div class="pg-vis rv d1">
+          <img src="https://images.unsplash.com/photo-1517836357463-d25dfeac3438?w=700&q=80&auto=format&fit=crop"
+            alt="At home training" class="pg-img" />
+          <div class="pg-glow"></div>
+          <div class="pg-chip"><strong>100%</strong><span>Bodyweight</span></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TEAM -->
+  <section class="section team" id="team" style="background:var(--bg2);">
+    <div class="container">
+      <div class="t-hd">
+        <span class="tag">The Crew</span>
+        <h2 class="dsp rv">Meet The Team</h2>
+        <p class="b-md rv d1" style="margin-top:14px;max-width:440px;margin-left:auto;margin-right:auto;">Real coaches.
+          Real dedication. Every trainer lives the Limitless philosophy daily.</p>
+      </div>
+      <div class="t-grid">
+        <div class="tc rv">
+          <div class="t-iw"><img
+              src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=500&q=80&auto=format&fit=crop"
+              alt="O Brolick" /></div>
+          <div class="t-info">
+            <div class="t-name">O Brolick</div>
+            <div class="t-role">Head Coach &amp; Founder</div>
+          </div>
+          <div class="t-bar"></div>
+        </div>
+        <div class="tc rv d1">
+          <div class="t-iw"><img
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop"
+              alt="Jordan" /></div>
+          <div class="t-info">
+            <div class="t-name">Jordan</div>
+            <div class="t-role">Coach &amp; Community Lead</div>
+          </div>
+          <div class="t-bar"></div>
+        </div>
+        <div class="tc rv d2">
+          <div class="t-iw"><img
+              src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?w=500&q=80&auto=format&fit=crop"
+              alt="Joe The Dog" /></div>
+          <div class="t-info">
+            <div class="t-name">Joe The Dog</div>
+            <div class="t-role">Strength &amp; Conditioning</div>
+          </div>
+          <div class="t-bar"></div>
+        </div>
+      </div>
+      <div style="text-align:center;margin-top:44px;"><a href="https://www.limitlessnyc.com/team" target="_blank"
+          class="btn btn-outline cut">View Full Team</a></div>
+    </div>
+  </section>
+
+  <!-- NONPROFIT -->
+  <section class="section nonprofit" style="background:var(--bg);">
+    <div class="np-bg"></div>
+    <div class="np-glow"></div>
+    <div class="container">
+      <div class="np-in">
+        <div class="rv">
+          <span class="tag">Our Mission</span>
+          <div class="np-logo">STRONGER<br><span>TOGETHER</span><br>INC.</div>
+          <p class="b-md" style="margin-bottom:36px;">Beyond the gym, we run a nonprofit dedicated to bringing
+            calisthenics, wellness, and mental resilience programming to underserved communities across New York City.
+          </p>
+          <a href="https://www.strongertogethernyc.org" target="_blank" class="btn btn-mint cut">Visit The Nonprofit
+            →</a>
+        </div>
+        <div class="rv d1">
+          <div class="np-pillars">
+            <div class="np-p">
+              <div class="np-line"></div>
+              <div>
+                <div class="np-t">Community Impact</div>
+                <div class="np-d">Free and reduced-cost programming for youth and community organizations across NYC.
+                </div>
+              </div>
+            </div>
+            <div class="np-p">
+              <div class="np-line"></div>
+              <div>
+                <div class="np-t">Mindset Education</div>
+                <div class="np-d">Teaching resilience, discipline, and mental fortitude alongside physical training.
+                </div>
+              </div>
+            </div>
+            <div class="np-p">
+              <div class="np-line"></div>
+              <div>
+                <div class="np-t">Access For All</div>
+                <div class="np-d">No barriers. No excuses. Fitness and resilience belong to everyone, everywhere.</div>
+              </div>
+            </div>
+            <div class="np-p">
+              <div class="np-line"></div>
+              <div>
+                <div class="np-t">NYC Rooted</div>
+                <div class="np-d">Born in SoHo, serving the five boroughs and beyond since day one.</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- INSTAGRAM -->
+  <section class="instagram" style="background:var(--bg2);">
+    <div class="container">
+      <div class="ig-hd rv">
+        <span class="tag">Follow Along</span>
+        <div class="ig-handle">Follow <span class="gshift">@LimitlessNYC_</span></div>
+      </div>
+    </div>
+    <div class="ig-grid">
+      <div class="ig-item"><img
+          src="https://images.unsplash.com/photo-1517963879433-6ad2b056d712?w=400&q=80&auto=format&fit=crop" alt="" />
+        <div class="ig-mask"><svg class="ig-icon" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+          </svg></div>
+      </div>
+      <div class="ig-item"><img
+          src="https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?w=400&q=80&auto=format&fit=crop" alt="" />
+        <div class="ig-mask"><svg class="ig-icon" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+          </svg></div>
+      </div>
+      <div class="ig-item"><img
+          src="https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=400&q=80&auto=format&fit=crop" alt="" />
+        <div class="ig-mask"><svg class="ig-icon" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+          </svg></div>
+      </div>
+      <div class="ig-item"><img
+          src="https://images.unsplash.com/photo-1549060279-7e168fcee0c2?w=400&q=80&auto=format&fit=crop" alt="" />
+        <div class="ig-mask"><svg class="ig-icon" viewBox="0 0 24 24">
+            <path
+              d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069z" />
+          </svg></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:36px;padding:0 32px;"><a href="https://www.instagram.com/limitlessnyc_"
+        target="_blank" class="btn btn-outline cut">Follow @LimitlessNYC_ on Instagram</a></div>
+  </section>
+
+  <!-- CTA / CONTACT -->
+  <section class="cta-sec" id="contact">
+    <div class="cta-bg"></div>
+    <div class="container">
+      <div class="cta-box rv">
+        <div>
+          <div class="cta-title">Ready to go<br><span class="gm">Limitless?</span></div>
+          <p class="cta-sub">Take the first step. Show up. The rest follows.</p>
+        </div>
+        <div class="cta-btns">
+          <a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank" class="btn btn-mint cut">Training
+            Inquiry</a>
+          <a href="https://www.limitlessnyc.com/book-a-workshop" target="_blank" class="btn btn-outline cut">Book A
+            Workshop</a>
+        </div>
+      </div>
+      <div class="con-cards rv d1">
+        <div class="cc">
+          <div class="cc-lbl">Call Us</div>
+          <div class="cc-val"><a href="tel:+19178871731">(917) 887-1731</a></div>
+        </div>
+        <div class="cc">
+          <div class="cc-lbl">Email Us</div>
+          <div class="cc-val"><a href="mailto:info@limitlessnyc.com">info@limitlessnyc.com</a></div>
+        </div>
+        <div class="cc">
+          <div class="cc-lbl">Visit Us</div>
+          <div class="cc-val">371 Canal Street<br>New York, NY 10013</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="ft-grid">
+        <div>
+          <div class="ft-brand">LIMITLESS<em>NYC</em></div>
+          <p class="ft-tag">Empowering people through calisthenics, mental resilience, and community. Born in New York
+            City.</p>
+          <div class="soc-row">
+            <a href="https://www.instagram.com/limitlessnyc_" target="_blank" class="soc">IG</a>
+            <a href="https://www.facebook.com/limitlessnycsoho" target="_blank" class="soc">FB</a>
+            <a href="https://www.tiktok.com/@limitlessnyc_" target="_blank" class="soc">TK</a>
+            <a href="https://youtube.com/@limitlessnyc_" target="_blank" class="soc">YT</a>
+          </div>
+        </div>
+        <div class="ft-col">
+          <h5>About</h5>
+          <ul class="ft-links">
+            <li><a href="#about">Who We Are</a></li>
+            <li><a href="#team">Meet The Team</a></li>
+            <li><a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together, Inc.</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Booking</h5>
+          <ul class="ft-links">
+            <li><a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank">1 on 1 Training</a></li>
+            <li><a href="#workshops">Workshops</a></li>
+            <li><a href="#programs">At Home Programs</a></li>
+          </ul>
+        </div>
+        <div class="ft-col">
+          <h5>Contact</h5>
+          <ul class="ft-links">
+            <li><a href="tel:+19178871731">(917) 887-1731</a></li>
+            <li><a href="mailto:info@limitlessnyc.com">info@limitlessnyc.com</a></li>
+            <li><a href="#contact">371 Canal St, NY 10013</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="ft-btm">
+        <p>© 2024 LIMITLESS NYC. All rights reserved.</p>
+        <p>Built for the limitless.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- CHATBOT -->
+  <button class="cfab" id="cfab" aria-label="Chat">
+    <svg class="ci-o" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2.2" stroke-linecap="round"
+      stroke-linejoin="round">
+      <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
+    </svg>
+    <svg class="ci-c" viewBox="0 0 24 24" fill="none" stroke="#03020A" stroke-width="2.5" stroke-linecap="round">
+      <line x1="18" y1="6" x2="6" y2="18" />
+      <line x1="6" y1="6" x2="18" y2="18" />
+    </svg>
+  </button>
+  <div class="cwin" id="cwin">
+    <div class="chdr">
+      <div class="cav"><span>LN</span></div>
+      <div class="chi">
+        <h4>LIMITLESS NYC</h4>
+        <p><span class="odot"></span>Online · Usually replies instantly</p>
+      </div>
+    </div>
+    <div class="cmsgs" id="cmsgs"></div>
+    <div class="csugg" id="csugg"></div>
+    <div class="cinp-row">
+      <input type="text" class="cinp" id="cinp" placeholder="Ask us anything…" autocomplete="off" />
+      <button class="csnd" id="csnd"><svg viewBox="0 0 24 24">
+          <path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" />
+        </svg></button>
+    </div>
+  </div>
+
+  <script>
+    /* CURSOR */
+    const dot = document.getElementById('dot'), ring = document.getElementById('ring');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; dot.style.left = mx + 'px'; dot.style.top = my + 'px'; });
+    (function ar() { rx += (mx - rx) * .11; ry += (my - ry) * .11; ring.style.left = rx + 'px'; ring.style.top = ry + 'px'; requestAnimationFrame(ar); })();
+    document.querySelectorAll('a,button,.scard,.tc,.vc,.sc,.feat').forEach(el => {
+      el.addEventListener('mouseenter', () => { dot.style.width = '14px'; dot.style.height = '14px'; ring.style.width = '46px'; ring.style.height = '46px'; ring.style.borderColor = 'rgba(0,255,179,.8)'; });
+      el.addEventListener('mouseleave', () => { dot.style.width = '8px'; dot.style.height = '8px'; ring.style.width = '30px'; ring.style.height = '30px'; ring.style.borderColor = 'rgba(0,255,179,.5)'; });
+    });
+
+    /* NAV */
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('s', window.scrollY > 60);
+      document.getElementById('nCta').style.display = window.scrollY > 200 ? 'inline-flex' : 'none';
+    });
+
+    /* MOBILE */
+    document.getElementById('hamBtn').addEventListener('click', () => document.getElementById('mobMenu').classList.add('open'));
+    document.getElementById('mobX').addEventListener('click', () => document.getElementById('mobMenu').classList.remove('open'));
+    function cm() { document.getElementById('mobMenu').classList.remove('open'); }
+
+    /* SCROLL REVEAL */
+    const ro = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { x.target.classList.add('in'); ro.unobserve(x.target); } }), { threshold: .1 });
+    document.querySelectorAll('.rv').forEach(el => ro.observe(el));
+
+    /* COUNTERS */
+    function runCounter(el) {
+      const t = +el.dataset.t, d = 1500, s = performance.now();
+      (function f(n) { const p = Math.min((n - s) / d, 1), e = 1 - Math.pow(1 - p, 4); el.textContent = Math.round(e * t); if (p < 1) requestAnimationFrame(f); })(s);
+    }
+    const co = new IntersectionObserver(e => e.forEach(x => { if (x.isIntersecting) { runCounter(x.target); co.unobserve(x.target); } }), { threshold: .5 });
+    document.querySelectorAll('.counter').forEach(el => co.observe(el));
+
+    /* CHATBOT */
+    const fab = document.getElementById('cfab'), win = document.getElementById('cwin'),
+      msgs = document.getElementById('cmsgs'), inp = document.getElementById('cinp'),
+      snd = document.getElementById('csnd'), sgg = document.getElementById('csugg');
+    let open = false;
+
+    const qa = [
+      { t: ['what is limitless', 'about', 'who are you', 'what do you do'], a: "LIMITLESS NYC is a premium calisthenics gym in SoHo, NYC 🗽 We train mind and body using bodyweight methods — building resilience, discipline, and strength from the inside out. 💪" },
+      { t: ['where', 'location', 'address', 'canal', 'soho'], a: "We're at 371 Canal Street, New York, NY 10013 — right in SoHo. Come find us! 📍" },
+      { t: ['book', '1 on 1', 'one on one', 'private', 'personal training'], a: "Submit a training inquiry on our site or call (917) 887-1731. We'll match you with the right coach for your goals!" },
+      { t: ['workshop', 'group', 'organization', 'school', 'community'], a: "Our 2-hour workshops blend expert training with mindset coaching. For schools, nonprofits, agencies & orgs. Hit 'Book A Workshop' above! 🏋️" },
+      { t: ['online', 'at home', 'program', 'digital', 'home training'], a: "Yes! At Home Programs = 100% bodyweight, zero equipment, all levels. Check the Programs section! 🏠" },
+      { t: ['price', 'cost', 'how much', 'pricing', 'fee'], a: "Pricing varies by service. Contact info@limitlessnyc.com or call (917) 887-1731 for rates!" },
+      { t: ['contact', 'phone', 'email', 'reach'], a: "📞 (917) 887-1731\n📧 info@limitlessnyc.com\n📍 371 Canal Street, NY 10013" },
+      { t: ['stronger together', 'nonprofit', 'charity', 'community'], a: "Stronger Together, Inc. is our nonprofit — free calisthenics programs for underserved NYC communities. Visit strongertogethernyc.org ❤️" },
+      { t: ['calisthenics', 'bodyweight', 'training style'], a: "Calisthenics = bodyweight mastery 🔥 Pull-ups, dips, muscle-ups — no machines, just you. Pure functional strength." },
+      { t: ['barmania', 'bars', 'equipment'], a: "We're the ONLY gym in the USA with BarMania Pro Bars — elite equipment used by world champions. 🇺🇸" },
+      { t: ['pix11', 'press', 'news', 'media'], a: "Featured on PIX11 News 2024 for our community fitness approach. Read at pix11.com 📺" },
+      { t: ['instagram', 'social', 'follow', 'tiktok', 'youtube'], a: "Follow us:\n📸 Instagram: @LimitlessNYC_\n🎵 TikTok: @LimitlessNYC_\n▶️ YouTube: @LimitlessNYC_" },
+      { t: ['beginner', 'new', 'start', 'first time'], a: "100% welcome! We work with ALL levels. Our coaches meet you exactly where you are. Reach out today!" },
+      { t: ['hi', 'hello', 'hey', 'sup', 'yo'], a: "Hey! 👋 Welcome to LIMITLESS NYC — where we forge strength from the inside out. How can I help?" }
+    ];
+    const suggs = ['📍 Location', '💪 Book a session', '🔥 What is calisthenics?', '🏠 At home programs', '📞 Contact info', '❤️ Stronger Together'];
+
+    const gt = () => new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+    function addMsg(txt, bot = true) {
+      const d = document.createElement('div'); d.className = 'cm ' + (bot ? 'cm-b' : 'cm-u');
+      const b = document.createElement('div'); b.className = 'cbb'; b.style.whiteSpace = 'pre-line'; b.textContent = txt;
+      const t = document.createElement('div'); t.className = 'ctm'; t.textContent = gt();
+      d.appendChild(b); d.appendChild(t); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight;
+    }
+    function showTyp() { const d = document.createElement('div'); d.className = 'cm cm-b'; d.id = 'typ'; const r = document.createElement('div'); r.className = 'trow'; r.innerHTML = '<span class="td"></span><span class="td"></span><span class="td"></span>'; d.appendChild(r); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; }
+    function hideTyp() { const t = document.getElementById('typ'); if (t) t.remove(); }
+    function findA(txt) { const l = txt.toLowerCase(); for (const i of qa) if (i.t.some(t => l.includes(t))) return i.a; return "Great question! Reach us at info@limitlessnyc.com or (917) 887-1731. We're always here! 🙌"; }
+    function send(txt) { if (!txt.trim()) return; addMsg(txt, false); inp.value = ''; sgg.innerHTML = ''; showTyp(); setTimeout(() => { hideTyp(); addMsg(findA(txt)); showSugg(); }, 700 + Math.random() * 500); }
+    function showSugg() { sgg.innerHTML = ''; suggs.slice(0, 4).forEach(s => { const b = document.createElement('button'); b.className = 'sb'; b.textContent = s; b.addEventListener('click', () => send(s)); sgg.appendChild(b); }); }
+    function initChat() { msgs.innerHTML = ''; setTimeout(() => { addMsg("Hey! 👋 Welcome to LIMITLESS NYC. How can I help you today?"); showSugg(); }, 300); }
+
+    fab.addEventListener('click', () => { open = !open; fab.classList.toggle('act', open); win.classList.toggle('open', open); if (open && msgs.children.length === 0) initChat(); });
+    snd.addEventListener('click', () => send(inp.value));
+    inp.addEventListener('keydown', e => { if (e.key === 'Enter') send(inp.value); });
+  </script>
+</body>
+
+</html>
