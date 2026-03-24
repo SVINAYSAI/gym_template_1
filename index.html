@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1.0" />
-  <title>LIMITLESS NYC | Calisthenics — SoHo, NYC</title>
+  <title>ChowdhuryX Corporation — Calisthenics Demo</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
@@ -1403,7 +1403,7 @@
     }
 
     .values::before {
-      content: 'LIMITLESS';
+      content: 'CHOWDHURYX';
       position: absolute;
       font-family: var(--fd);
       font-size: clamp(100px, 16vw, 220px);
@@ -2621,6 +2621,39 @@
 
 <body>
   <div class="scanlines"></div>
+
+<!-- DEMO POPUP -->
+<div id="demo-popup-overlay" style="position:fixed;inset:0;z-index:99999;background:rgba(3,2,10,.85);backdrop-filter:blur(8px);display:flex;align-items:center;justify-content:center;padding:1rem;animation:fadeInDp .4s ease">
+  <div style="background:var(--bg2);border:1px solid var(--border2);max-width:460px;width:100%;overflow:hidden;box-shadow:0 32px 80px rgba(0,0,0,.6),0 0 80px rgba(0,255,179,.06);animation:scaleInDp .4s cubic-bezier(.16,1,.3,1)">
+    <div style="height:3px;background:linear-gradient(90deg,var(--mint),var(--pink),var(--gold),var(--mint));background-size:300% 100%;animation:gsa 3s linear infinite"></div>
+    <div style="padding:2.5rem;text-align:center">
+      <div style="width:64px;height:64px;margin:0 auto 1.2rem;background:linear-gradient(135deg,var(--mint),var(--mint2));display:flex;align-items:center;justify-content:center;box-shadow:var(--gm);clip-path:polygon(0 0,calc(100% - 12px) 0,100% 12px,100% 100%,12px 100%,0 calc(100% - 12px))">
+        <span style="font-size:1.6rem">🏋️</span>
+      </div>
+      <span style="display:inline-flex;align-items:center;gap:6px;background:rgba(0,255,179,.1);color:var(--mint);padding:5px 14px;border:1px solid rgba(0,255,179,.2);font-family:var(--fm);font-size:10px;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:1rem">
+        👁 DEMO MODE
+      </span>
+      <h2 style="font-family:var(--fd);font-size:2rem;color:var(--white);margin-bottom:.6rem;line-height:1.1">Welcome to<br/><span style="background:linear-gradient(135deg,var(--mint),var(--mint2));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent">ChowdhuryX Corporation</span></h2>
+      <p style="color:var(--text);font-size:.9rem;line-height:1.7;margin-bottom:1.5rem">This is a <strong style="color:var(--white)">demo preview</strong> of a calisthenics gym website template. All content, names, and details are for demonstration purposes only.</p>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:.6rem;margin-bottom:1.5rem">
+        <div style="background:var(--bg3);border:1px solid var(--border);padding:.8rem;text-align:left">
+          <div style="font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Contact</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--mint)">rave.i@chowdhuryx.com</div>
+        </div>
+        <div style="background:var(--bg3);border:1px solid var(--border);padding:.8rem;text-align:left">
+          <div style="font-family:var(--fm);font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:2px">Type</div>
+          <div style="font-size:.82rem;font-weight:600;color:var(--mint)">Calisthenics Demo</div>
+        </div>
+      </div>
+      <button onclick="document.getElementById('demo-popup-overlay').style.display='none'" style="width:100%;padding:.85rem;background:linear-gradient(135deg,var(--mint),var(--mint2));color:var(--bg);border:none;font-family:var(--fm);font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;box-shadow:var(--gm);transition:.2s;clip-path:polygon(0 0,calc(100% - 10px) 0,100% 10px,100% 100%,10px 100%,0 calc(100% - 10px))">Explore Demo</button>
+      <p style="font-size:.65rem;color:var(--muted);margin-top:1rem;font-family:var(--fm);letter-spacing:1px">&copy; 2025 ChowdhuryX Corporation. All rights reserved.</p>
+    </div>
+  </div>
+</div>
+<style>
+  @keyframes fadeInDp { from { opacity:0 } to { opacity:1 } }
+  @keyframes scaleInDp { from { opacity:0;transform:scale(.9) translateY(20px) } to { opacity:1;transform:scale(1) translateY(0) } }
+</style>
   <div class="grid-bg"></div>
   <div id="dot"></div>
   <div id="ring"></div>
@@ -2629,7 +2662,7 @@
   <nav class="nav" id="nav">
     <div class="container">
       <div class="nav-in">
-        <a href="#home" class="logo">LIMITLESS<span class="logo-acc"> NYC</span><span class="logo-dot"></span></a>
+        <a href="#home" class="logo">CHOWDHURYX<span class="logo-acc"> CORP</span><span class="logo-dot"></span></a>
         <ul class="nl">
           <li><a href="#home">Home</a></li>
           <li><button>About ▾</button>
@@ -2640,7 +2673,7 @@
             <div class="dd"><a href="#services">1 on 1 Training</a><a href="#workshops">Workshops</a></div>
           </li>
           <li><a href="#programs">At Home Programs</a></li>
-          <li><a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together</a></li>
+          <li><a href="#" target="_blank">Community</a></li>
         </ul>
         <div class="nav-r">
           <a href="#services" class="btn btn-mint cut-sm" style="padding:10px 22px;display:none;" id="nCta">Book Now</a>
@@ -2658,7 +2691,7 @@
     <a href="#services" onclick="cm()">Booking</a>
     <a href="#workshops" onclick="cm()">Workshops</a>
     <a href="#programs" onclick="cm()">At Home Programs</a>
-    <a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together</a>
+    <a href="#" target="_blank">Community</a>
     <a href="#contact" onclick="cm()">Contact Us</a>
   </div>
 
@@ -2670,11 +2703,11 @@
     <div class="h-photo"></div>
     <div class="h-fade"></div>
     <div class="h-corner"></div>
-    <div class="h-vert">SoHo · 371 Canal St · New York City</div>
+    <div class="h-vert">ChowdhuryX Corporation · Demo</div>
     <div class="container hc">
       <div class="live rv">
         <span class="live-dot"></span>
-        <span>Calisthenics Gym · SoHo, New York City</span>
+        <span>Calisthenics Gym · ChowdhuryX Corporation Demo</span>
       </div>
       <div class="h-title rv d1">
         <h1><span class="h-t1">STRONGER</span><br><span class="h-t2">TOGETHER</span></h1>
@@ -2696,8 +2729,8 @@
         <div class="hfl">BarMania USA</div>
       </div>
       <div class="hfc rv d4">
-        <div class="hfn">NYC</div>
-        <div class="hfl">Canal St · SoHo</div>
+        <div class="hfn">DEMO</div>
+        <div class="hfl">ChowdhuryX Corp</div>
       </div>
     </div>
   </section>
@@ -2735,8 +2768,8 @@
           <div class="sl">Bodyweight Based</div>
         </div>
         <div class="sc rv d3">
-          <div class="sn">NYC</div>
-          <div class="sl">SoHo · Canal Street</div>
+          <div class="sn">DEMO</div>
+          <div class="sl">ChowdhuryX Corp</div>
         </div>
       </div>
     </div>
@@ -2753,14 +2786,14 @@
           </div>
           <img src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?w=400&q=80&auto=format&fit=crop"
             alt="Community" class="ab-float" />
-          <div class="ab-badge">Est. NYC</div>
-          <div class="ab-chip"><strong class="counter" data-t="371">0</strong><span>Canal St</span></div>
+          <div class="ab-badge">Demo</div>
+          <div class="ab-chip"><strong class="counter" data-t="371">0</strong><span>Demo</span></div>
         </div>
         <div class="rv d1">
           <span class="tag">Who We Are</span>
           <h2 class="dsp">Create<br>Your Own<br><span class="gm">Reality</span></h2>
           <div class="divider"></div>
-          <p class="b-lg" style="margin-bottom:20px;">At LIMITLESS NYC, we empower people. No matter who you are or
+          <p class="b-lg" style="margin-bottom:20px;">At ChowdhuryX Corporation, we empower people. No matter who you are or
             where you come from, adversity is going to find its way into your life.</p>
           <p class="b-md" style="margin-bottom:20px;">We believe resilience is a skill and we are here to build stress
             tolerance. We use the body as a tool to build discipline and enhance mental fortitude.</p>
@@ -2783,9 +2816,9 @@
         <span class="pr-logo">PIX11 NEWS</span>
         <div class="pr-sep"></div>
         <div class="pr-q-block">
-          <p class="pr-q">"Get Stronger, Live Better — PIX11 News spotlights LIMITLESS NYC for its unique approach to
-            calisthenics and community fitness in New York City."</p>
-          <a href="https://pix11.com/pix11-partner-sponsored/sponsored-content-get-stronger-live-better-with-limitless-nyc/"
+          <p class="pr-q">"Get Stronger, Live Better — A spotlight on ChowdhuryX Corporation for its unique approach to
+            calisthenics and community fitness."</p>
+          <a href="#"
             target="_blank" class="pr-link">View Full Article →</a>
         </div>
       </div>
@@ -2812,7 +2845,7 @@
             <div class="s-title">1 on 1<br>Training</div>
             <div class="s-desc">Dedicated coaching tailored to your goals, level, and schedule. Maximum focus, maximum
               results.</div>
-            <a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank" class="s-cta">Inquire Now →</a>
+            <a href="#" class="s-cta">Inquire Now →</a>
           </div>
         </div>
         <div class="scard">
@@ -2890,7 +2923,7 @@
               </div>
             </div>
           </div>
-          <div style="margin-top:40px;"><a href="https://www.limitlessnyc.com/book-a-workshop" target="_blank"
+          <div style="margin-top:40px;"><a href="#"
               class="btn btn-mint cut">Book A Workshop</a></div>
         </div>
         <div class="ws-vis"></div>
@@ -2911,21 +2944,21 @@
           <div class="viw"><span style="font-size:20px;">🔥</span></div>
           <div class="vn">Consistency</div>
           <p class="vq">"Every day is a new opportunity to be better than yesterday."</p>
-          <p class="va">— O Brolick</p>
+          <p class="va">— Coach A.</p>
         </div>
         <div class="vc rv d1">
           <div class="vnm">02</div>
           <div class="viw"><span style="font-size:20px;">❤️</span></div>
           <div class="vn">Family</div>
           <p class="vq">"Becoming the healthiest version of yourself is one of the most selfless things you can do."</p>
-          <p class="va">— Jordan</p>
+          <p class="va">— Coach B.</p>
         </div>
         <div class="vc rv d2">
           <div class="vnm">03</div>
           <div class="viw"><span style="font-size:20px;">⚡</span></div>
           <div class="vn">Fortitude</div>
           <p class="vq">"Strength is never a weakness."</p>
-          <p class="va">— Joe The Dog</p>
+          <p class="va">— Coach C.</p>
         </div>
       </div>
     </div>
@@ -2939,7 +2972,7 @@
           <span class="tag">At Home Programs</span>
           <h2 class="dsp">Train<br>Anywhere.<br><span class="gp">No Excuses.</span></h2>
           <div class="divider"></div>
-          <p class="b-md">Our digital programs bring the LIMITLESS method to you — 100% bodyweight, zero equipment, all
+          <p class="b-md">Our digital programs bring the ChowdhuryX method to you — 100% bodyweight, zero equipment, all
             levels. Train on your schedule.</p>
           <div class="feat-grid">
             <div class="feat">
@@ -2961,7 +2994,7 @@
               <div class="fdot"></div><span class="ft">Your schedule</span>
             </div>
           </div>
-          <div style="margin-top:36px;"><a href="https://www.limitlessnyc.com/programs" target="_blank"
+          <div style="margin-top:36px;"><a href="#"
               class="btn btn-pink cut">Browse Programs</a></div>
         </div>
         <div class="pg-vis rv d1">
@@ -2981,7 +3014,7 @@
         <span class="tag">The Crew</span>
         <h2 class="dsp rv">Meet The Team</h2>
         <p class="b-md rv d1" style="margin-top:14px;max-width:440px;margin-left:auto;margin-right:auto;">Real coaches.
-          Real dedication. Every trainer lives the Limitless philosophy daily.</p>
+          Real dedication. Every trainer lives the ChowdhuryX philosophy daily.</p>
       </div>
       <div class="t-grid">
         <div class="tc rv">
@@ -2989,7 +3022,7 @@
               src="https://images.unsplash.com/photo-1567013127542-490d757e51fc?w=500&q=80&auto=format&fit=crop"
               alt="O Brolick" /></div>
           <div class="t-info">
-            <div class="t-name">O Brolick</div>
+            <div class="t-name">Coach A.</div>
             <div class="t-role">Head Coach &amp; Founder</div>
           </div>
           <div class="t-bar"></div>
@@ -2999,7 +3032,7 @@
               src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80&auto=format&fit=crop"
               alt="Jordan" /></div>
           <div class="t-info">
-            <div class="t-name">Jordan</div>
+            <div class="t-name">Coach B.</div>
             <div class="t-role">Coach &amp; Community Lead</div>
           </div>
           <div class="t-bar"></div>
@@ -3009,13 +3042,13 @@
               src="https://images.unsplash.com/photo-1546483875-ad9014c88eba?w=500&q=80&auto=format&fit=crop"
               alt="Joe The Dog" /></div>
           <div class="t-info">
-            <div class="t-name">Joe The Dog</div>
+            <div class="t-name">Coach C.</div>
             <div class="t-role">Strength &amp; Conditioning</div>
           </div>
           <div class="t-bar"></div>
         </div>
       </div>
-      <div style="text-align:center;margin-top:44px;"><a href="https://www.limitlessnyc.com/team" target="_blank"
+      <div style="text-align:center;margin-top:44px;"><a href="#"
           class="btn btn-outline cut">View Full Team</a></div>
     </div>
   </section>
@@ -3030,9 +3063,9 @@
           <span class="tag">Our Mission</span>
           <div class="np-logo">STRONGER<br><span>TOGETHER</span><br>INC.</div>
           <p class="b-md" style="margin-bottom:36px;">Beyond the gym, we run a nonprofit dedicated to bringing
-            calisthenics, wellness, and mental resilience programming to underserved communities across New York City.
+            calisthenics, wellness, and mental resilience programming to underserved communities.
           </p>
-          <a href="https://www.strongertogethernyc.org" target="_blank" class="btn btn-mint cut">Visit The Nonprofit
+          <a href="#" class="btn btn-mint cut">Visit The Nonprofit
             →</a>
         </div>
         <div class="rv d1">
@@ -3063,8 +3096,8 @@
             <div class="np-p">
               <div class="np-line"></div>
               <div>
-                <div class="np-t">NYC Rooted</div>
-                <div class="np-d">Born in SoHo, serving the five boroughs and beyond since day one.</div>
+                <div class="np-t">Locally Rooted</div>
+                <div class="np-d">Serving communities and beyond since day one.</div>
               </div>
             </div>
           </div>
@@ -3078,7 +3111,7 @@
     <div class="container">
       <div class="ig-hd rv">
         <span class="tag">Follow Along</span>
-        <div class="ig-handle">Follow <span class="gshift">@LimitlessNYC_</span></div>
+        <div class="ig-handle">Follow <span class="gshift">@ChowdhuryX_Demo</span></div>
       </div>
     </div>
     <div class="ig-grid">
@@ -3111,8 +3144,8 @@
           </svg></div>
       </div>
     </div>
-    <div style="text-align:center;margin-top:36px;padding:0 32px;"><a href="https://www.instagram.com/limitlessnyc_"
-        target="_blank" class="btn btn-outline cut">Follow @LimitlessNYC_ on Instagram</a></div>
+    <div style="text-align:center;margin-top:36px;padding:0 32px;"><a href="#"
+        class="btn btn-outline cut">Follow @ChowdhuryX_Demo on Instagram</a></div>
   </section>
 
   <!-- CTA / CONTACT -->
@@ -3125,24 +3158,24 @@
           <p class="cta-sub">Take the first step. Show up. The rest follows.</p>
         </div>
         <div class="cta-btns">
-          <a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank" class="btn btn-mint cut">Training
+          <a href="#" class="btn btn-mint cut">Training
             Inquiry</a>
-          <a href="https://www.limitlessnyc.com/book-a-workshop" target="_blank" class="btn btn-outline cut">Book A
+          <a href="#" class="btn btn-outline cut">Book A
             Workshop</a>
         </div>
       </div>
       <div class="con-cards rv d1">
         <div class="cc">
           <div class="cc-lbl">Call Us</div>
-          <div class="cc-val"><a href="tel:+19178871731">(917) 887-1731</a></div>
+          <div class="cc-val"><a href="#">+XX XXXXX XXXXX</a></div>
         </div>
         <div class="cc">
           <div class="cc-lbl">Email Us</div>
-          <div class="cc-val"><a href="mailto:info@limitlessnyc.com">info@limitlessnyc.com</a></div>
+          <div class="cc-val"><a href="mailto:rave.i@chowdhuryx.com">rave.i@chowdhuryx.com</a></div>
         </div>
         <div class="cc">
           <div class="cc-lbl">Visit Us</div>
-          <div class="cc-val">371 Canal Street<br>New York, NY 10013</div>
+          <div class="cc-val">Demo Location<br>ChowdhuryX Corporation</div>
         </div>
       </div>
     </div>
@@ -3153,14 +3186,13 @@
     <div class="container">
       <div class="ft-grid">
         <div>
-          <div class="ft-brand">LIMITLESS<em>NYC</em></div>
-          <p class="ft-tag">Empowering people through calisthenics, mental resilience, and community. Born in New York
-            City.</p>
+          <div class="ft-brand">CHOWDHURYX<em>CORP</em></div>
+          <p class="ft-tag">A demo calisthenics gym website by ChowdhuryX Corporation. Mental resilience and community.</p>
           <div class="soc-row">
-            <a href="https://www.instagram.com/limitlessnyc_" target="_blank" class="soc">IG</a>
-            <a href="https://www.facebook.com/limitlessnycsoho" target="_blank" class="soc">FB</a>
-            <a href="https://www.tiktok.com/@limitlessnyc_" target="_blank" class="soc">TK</a>
-            <a href="https://youtube.com/@limitlessnyc_" target="_blank" class="soc">YT</a>
+            <a href="#" class="soc">IG</a>
+            <a href="#" class="soc">FB</a>
+            <a href="#" class="soc">TK</a>
+            <a href="#" class="soc">YT</a>
           </div>
         </div>
         <div class="ft-col">
@@ -3168,13 +3200,13 @@
           <ul class="ft-links">
             <li><a href="#about">Who We Are</a></li>
             <li><a href="#team">Meet The Team</a></li>
-            <li><a href="https://www.strongertogethernyc.org" target="_blank">Stronger Together, Inc.</a></li>
+            <li><a href="#">Community</a></li>
           </ul>
         </div>
         <div class="ft-col">
           <h5>Booking</h5>
           <ul class="ft-links">
-            <li><a href="https://www.limitlessnyc.com/1-on-1-training" target="_blank">1 on 1 Training</a></li>
+            <li><a href="#">1 on 1 Training</a></li>
             <li><a href="#workshops">Workshops</a></li>
             <li><a href="#programs">At Home Programs</a></li>
           </ul>
@@ -3182,15 +3214,15 @@
         <div class="ft-col">
           <h5>Contact</h5>
           <ul class="ft-links">
-            <li><a href="tel:+19178871731">(917) 887-1731</a></li>
-            <li><a href="mailto:info@limitlessnyc.com">info@limitlessnyc.com</a></li>
-            <li><a href="#contact">371 Canal St, NY 10013</a></li>
+            <li><a href="#">+XX XXXXX XXXXX</a></li>
+            <li><a href="mailto:rave.i@chowdhuryx.com">rave.i@chowdhuryx.com</a></li>
+            <li><a href="#contact">Demo Location</a></li>
           </ul>
         </div>
       </div>
       <div class="ft-btm">
-        <p>© 2024 LIMITLESS NYC. All rights reserved.</p>
-        <p>Built for the limitless.</p>
+        <p>© 2025 ChowdhuryX Corporation. All rights reserved.</p>
+        <p>Demo website.</p>
       </div>
     </div>
   </footer>
@@ -3208,9 +3240,9 @@
   </button>
   <div class="cwin" id="cwin">
     <div class="chdr">
-      <div class="cav"><span>LN</span></div>
+      <div class="cav"><span>CX</span></div>
       <div class="chi">
-        <h4>LIMITLESS NYC</h4>
+        <h4>CHOWDHURYX CORP</h4>
         <p><span class="odot"></span>Online · Usually replies instantly</p>
       </div>
     </div>
@@ -3266,20 +3298,20 @@
     let open = false;
 
     const qa = [
-      { t: ['what is limitless', 'about', 'who are you', 'what do you do'], a: "LIMITLESS NYC is a premium calisthenics gym in SoHo, NYC 🗽 We train mind and body using bodyweight methods — building resilience, discipline, and strength from the inside out. 💪" },
-      { t: ['where', 'location', 'address', 'canal', 'soho'], a: "We're at 371 Canal Street, New York, NY 10013 — right in SoHo. Come find us! 📍" },
-      { t: ['book', '1 on 1', 'one on one', 'private', 'personal training'], a: "Submit a training inquiry on our site or call (917) 887-1731. We'll match you with the right coach for your goals!" },
-      { t: ['workshop', 'group', 'organization', 'school', 'community'], a: "Our 2-hour workshops blend expert training with mindset coaching. For schools, nonprofits, agencies & orgs. Hit 'Book A Workshop' above! 🏋️" },
+      { t: ['what is limitless', 'about', 'who are you', 'what do you do'], a: "ChowdhuryX Corporation is a demo calisthenics gym website 🗽 We showcase bodyweight training methods — building resilience, discipline, and strength from the inside out. 💪" },
+      { t: ['where', 'location', 'address', 'canal', 'soho'], a: "This is a demo website by ChowdhuryX Corporation. Contact rave.i@chowdhuryx.com for details! 📍" },
+      { t: ['book', '1 on 1', 'one on one', 'private', 'personal training'], a: "Submit a training inquiry or contact rave.i@chowdhuryx.com. We'll match you with the right coach for your goals!" },
+      { t: ['workshop', 'group', 'organization', 'school', 'community'], a: "Our 2-hour workshops blend expert training with mindset coaching. For schools, nonprofits, agencies & orgs. 🏋️" },
       { t: ['online', 'at home', 'program', 'digital', 'home training'], a: "Yes! At Home Programs = 100% bodyweight, zero equipment, all levels. Check the Programs section! 🏠" },
-      { t: ['price', 'cost', 'how much', 'pricing', 'fee'], a: "Pricing varies by service. Contact info@limitlessnyc.com or call (917) 887-1731 for rates!" },
-      { t: ['contact', 'phone', 'email', 'reach'], a: "📞 (917) 887-1731\n📧 info@limitlessnyc.com\n📍 371 Canal Street, NY 10013" },
-      { t: ['stronger together', 'nonprofit', 'charity', 'community'], a: "Stronger Together, Inc. is our nonprofit — free calisthenics programs for underserved NYC communities. Visit strongertogethernyc.org ❤️" },
+      { t: ['price', 'cost', 'how much', 'pricing', 'fee'], a: "Pricing varies by service. Contact rave.i@chowdhuryx.com for rates!" },
+      { t: ['contact', 'phone', 'email', 'reach'], a: "📧 rave.i@chowdhuryx.com\n📍 Demo Location, ChowdhuryX Corporation" },
+      { t: ['stronger together', 'nonprofit', 'charity', 'community'], a: "Community programs for underserved areas ❤️" },
       { t: ['calisthenics', 'bodyweight', 'training style'], a: "Calisthenics = bodyweight mastery 🔥 Pull-ups, dips, muscle-ups — no machines, just you. Pure functional strength." },
-      { t: ['barmania', 'bars', 'equipment'], a: "We're the ONLY gym in the USA with BarMania Pro Bars — elite equipment used by world champions. 🇺🇸" },
-      { t: ['pix11', 'press', 'news', 'media'], a: "Featured on PIX11 News 2024 for our community fitness approach. Read at pix11.com 📺" },
-      { t: ['instagram', 'social', 'follow', 'tiktok', 'youtube'], a: "Follow us:\n📸 Instagram: @LimitlessNYC_\n🎵 TikTok: @LimitlessNYC_\n▶️ YouTube: @LimitlessNYC_" },
+      { t: ['barmania', 'bars', 'equipment'], a: "Elite equipment used by world champions. 🇺🇸" },
+      { t: ['pix11', 'press', 'news', 'media'], a: "Featured for our community fitness approach. 📺" },
+      { t: ['instagram', 'social', 'follow', 'tiktok', 'youtube'], a: "Follow us on social media @ChowdhuryX_Demo" },
       { t: ['beginner', 'new', 'start', 'first time'], a: "100% welcome! We work with ALL levels. Our coaches meet you exactly where you are. Reach out today!" },
-      { t: ['hi', 'hello', 'hey', 'sup', 'yo'], a: "Hey! 👋 Welcome to LIMITLESS NYC — where we forge strength from the inside out. How can I help?" }
+      { t: ['hi', 'hello', 'hey', 'sup', 'yo'], a: "Hey! 👋 Welcome to ChowdhuryX Corporation Demo — where we forge strength from the inside out. How can I help?" }
     ];
     const suggs = ['📍 Location', '💪 Book a session', '🔥 What is calisthenics?', '🏠 At home programs', '📞 Contact info', '❤️ Stronger Together'];
 
@@ -3292,10 +3324,10 @@
     }
     function showTyp() { const d = document.createElement('div'); d.className = 'cm cm-b'; d.id = 'typ'; const r = document.createElement('div'); r.className = 'trow'; r.innerHTML = '<span class="td"></span><span class="td"></span><span class="td"></span>'; d.appendChild(r); msgs.appendChild(d); msgs.scrollTop = msgs.scrollHeight; }
     function hideTyp() { const t = document.getElementById('typ'); if (t) t.remove(); }
-    function findA(txt) { const l = txt.toLowerCase(); for (const i of qa) if (i.t.some(t => l.includes(t))) return i.a; return "Great question! Reach us at info@limitlessnyc.com or (917) 887-1731. We're always here! 🙌"; }
+    function findA(txt) { const l = txt.toLowerCase(); for (const i of qa) if (i.t.some(t => l.includes(t))) return i.a; return "Great question! Reach us at rave.i@chowdhuryx.com. We're always here! 🙌"; }
     function send(txt) { if (!txt.trim()) return; addMsg(txt, false); inp.value = ''; sgg.innerHTML = ''; showTyp(); setTimeout(() => { hideTyp(); addMsg(findA(txt)); showSugg(); }, 700 + Math.random() * 500); }
     function showSugg() { sgg.innerHTML = ''; suggs.slice(0, 4).forEach(s => { const b = document.createElement('button'); b.className = 'sb'; b.textContent = s; b.addEventListener('click', () => send(s)); sgg.appendChild(b); }); }
-    function initChat() { msgs.innerHTML = ''; setTimeout(() => { addMsg("Hey! 👋 Welcome to LIMITLESS NYC. How can I help you today?"); showSugg(); }, 300); }
+    function initChat() { msgs.innerHTML = ''; setTimeout(() => { addMsg("Hey! 👋 Welcome to ChowdhuryX Corporation Demo. How can I help you today?"); showSugg(); }, 300); }
 
     fab.addEventListener('click', () => { open = !open; fab.classList.toggle('act', open); win.classList.toggle('open', open); if (open && msgs.children.length === 0) initChat(); });
     snd.addEventListener('click', () => send(inp.value));
